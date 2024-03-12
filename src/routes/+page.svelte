@@ -1,9 +1,9 @@
 <script>
     import './main.css';
 
-    const logoSvg = "Logo-Icon.png";
-    const companySvg = "38795_vector.svg";
-    const userProfilePic = "c135d62b39e8cc0f1e2dfce61ea32106.jpeg";
+    const logoSvg = "static/Logo-Icon.png";
+    const companySvg = "static/38795_vector.svg";
+    const userProfilePic = "static/c135d62b39e8cc0f1e2dfce61ea32106.jpeg";
     const userName = "Krishna Kiran";
     const navigationList = [
         {
@@ -76,10 +76,10 @@
     <header class="header">
         <div class="header-left">
             <div class="header-logoDiv">
-                <img src={"duggup.png"} alt="Duggup-logo" class="header-logo"/>
+                <img src={"static/duggup.png"} alt="Duggup-logo" class="header-logo"/>
             </div>
             <div class="header-nameDiv">
-                <img src={"duggup-name.png"} alt="Duggup" class="header-name"/>
+                <img src={"static/duggup-name.png"} alt="Duggup" class="header-name"/>
             </div>
         </div>
 
@@ -150,7 +150,7 @@
                     <div class="user-info-bio__bio">{bio}</div>
                     <div class="user-info-curr">
                         <div class="user-info-logoDiv">
-                            <img src={"duggup.png"} alt={"Duggup"} class="user-info-logo"/>
+                            <img src={"static/duggup.png"} alt={"Duggup"} class="user-info-logo"/>
                         </div>
                         <div class="user-info-comName">Duggup</div>
                         <div class="user-info-comPos">Co-Founder and CEO</div>
@@ -198,14 +198,14 @@
                 <div class="stories__info">
                     <div class="stories-card">
                         <div class="stories-img-div">
-                            <img src="steve-jobs.jpeg" alt="Steve Jobs" class="stories-img" />
+                            <img src="static/steve-jobs.jpeg" alt="Steve Jobs" class="stories-img" />
                         </div>
                         <div class="stories-summary">{"No amount of technology can convert a bad story into a good story."}</div>
                     </div>
 
                     <div class="stories-card">
                         <div class="stories-img-div">
-                            <img src="sam-altman.jpeg" alt="Sam Altman" class="stories-img" />
+                            <img src="static/sam-altman.jpeg" alt="Sam Altman" class="stories-img" />
                         </div>
                         <div class="stories-summary">{"Your biggest regrets at 80 will be acts of omission."}</div>
                     </div>
@@ -240,7 +240,7 @@
                         </svg>
                     </div>
                     <div class="job-status__logoDiv">
-                        <img src="duggup.png" alt="Duggup Logo" class="job-status__logo"/>
+                        <img src="static/duggup.png" alt="Duggup Logo" class="job-status__logo"/>
                     </div>
                     <div class="job-status__com-name">Duggup</div>
                     <div class="job-status__loc">San Francisco Bay Area</div>
@@ -273,14 +273,14 @@
                 <div class="stories__info">
                     <div class="stories-card">
                         <div class="stories-img-div">
-                            <img src="startup.jpeg" alt="Start Up" class="stories-img" />
+                            <img src="static/startup.jpeg" alt="Start Up" class="stories-img" />
                         </div>
                         <div class="stories-summary">{"Startup Lesson I am reflecting. Don't build for the 'average person'."}</div>
                     </div>
 
                     <div class="stories-card">
                         <div class="stories-img-div">
-                            <img src="regret.png" alt="Sam Altman" class="stories-img" />
+                            <img src="static/regret.png" alt="Sam Altman" class="stories-img" />
                         </div>
                         <div class="stories-summary">{"Your biggest regrets at 80 will be acts of omission."}</div>
                     </div>
@@ -315,7 +315,7 @@
                         </svg>
                     </div>
                     <div class="job-status__logoDiv">
-                        <img src="betterup.jpeg" alt="Duggup Logo" class="job-status__logo"/>
+                        <img src="static/betterup.jpeg" alt="Duggup Logo" class="job-status__logo"/>
                     </div>
                     <div class="job-status__com-name">BetterUp</div>
                     <div class="job-status__loc">San Francisco Bay Area</div>
