@@ -24,6 +24,11 @@ a{
     text-decoration: none;
 }
 
+.btn:hover, a:hover{
+    text-decoration: underline;
+    transition: all 0.5s;
+}
+
 html{
     background-color: var(--bg-color);
 }
@@ -206,6 +211,7 @@ html{
     align-items: center;
     gap: 1rem;
     width: 10rem;
+    padding-left: 7rem;
 }
 
 .user-info-abt__imgDiv{
@@ -223,6 +229,7 @@ html{
 }
 
 .user-info-abt__name{
+    width: 9rem;
     line-height: 1.5rem;
     font-size: 1.5rem;
     font-weight: 700;
@@ -323,6 +330,7 @@ html{
 .timeline{
     display: grid;
     grid-template-columns: 12rem 1fr;
+    column-gap: 1rem;
 }
 
 .stories{
@@ -412,7 +420,7 @@ html{
     gap: 3px;
     align-items: flex-end;
     text-align: right;
-    padding-right: 3rem;
+    padding: 1rem 3rem 1rem 0;
     position: relative;
 
     font-size: 0.75rem;
@@ -462,7 +470,7 @@ html{
 
 .job-status-svgDiv{
     position: absolute;
-    width: 1rem;
+    width: 1.5rem;
     transform: translateX(50%);
     top: 50%;
     right: 0;
