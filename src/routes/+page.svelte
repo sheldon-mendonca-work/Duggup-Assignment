@@ -61,7 +61,7 @@
       postTitle: "",
       postBody: "",
       postSummary:
-        "Most people don't have original ideas. Here is how Sam Altman pushes himself to have unpopular ideas.",
+        "Most people don't have original ideas. Here is how Sam Altman pushes himself.",
       date: "Dec 2023",
     }],
     "job_Nov_23": {
