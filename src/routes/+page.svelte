@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import "./main.css";
 
   import userProfilePic from "$lib/assets/c135d62b39e8cc0f1e2dfce61ea32106.jpeg";
@@ -10,19 +10,43 @@
   import regretPhoto from "$lib/assets/regret.png";
   import betterUpPhoto from "$lib/assets/betterup.jpeg";
 
-  const userName = "Krishna Kiran";
-  const navigationList = [
-    {
-      id: 1,
-      image: "$lib/assets/home.png",
-      name: "Home",
-    },
-  ];
-  let bio =
-    "Co-Founder and CEO at Duggup - Social network for people in tech. Ex-Amazon Head of Engineering. I write hot-takes on building a business, shipping delightful products and accelerating product and career growth.";
+  const user = {
+    name: "Krishna Kiran",
+    bio: "Co-Founder and CEO at Duggup - Social network for people in tech. Ex-Amazon Head of Engineering. I write hot-takes on building a business, shipping delightful products and accelerating product and career growth.",
+    photo: userProfilePic,
+    companyName: "Duggup",
+    companyImage: duggupHeaderLogo,
+    jobPosition: "Co-Founder and CEO"
+  }
+    
   let isFollowing = false;
-  const posts = [
-    {
+
+    type postType = {
+        type: string;
+        image: string;
+        postTitle: string;
+        postBody: string;
+        postSummary: string;
+        date: string;
+    };
+
+    type jobType = {
+        type: string;
+        companyName: string;
+        image: string;
+        companyLocation: string;
+        jobName: string;
+        position: string;
+        location: string;
+        date: string;
+    };
+
+    type postsType = {
+        [key: string] : postType[] | jobType;
+    }
+
+  const posts: postsType = {
+    "post_Dec_23" : [{
       type: "post",
       image: steveJobsPhoto,
       postTitle: "",
@@ -39,8 +63,8 @@
       postSummary:
         "Most people don't have original ideas. Here is how Sam Altman pushes himself to have unpopular ideas.",
       date: "Dec 2023",
-    },
-    {
+    }],
+    "job_Nov_23": {
       type: "job",
       companyName: "Duggup",
       image: duggupHeaderLogo,
@@ -50,14 +74,14 @@
       location: "Remote",
       date: "Nov 2023",
     },
-    {
+    "post_Oct_23" : [{
       type: "post",
       image: startUpPhoto,
       postTitle: "",
       postBody: "",
       postSummary:
         "Startup Lesson I am reflecting. Don't build for the 'average person'.",
-      date: "Dec 2023",
+      date: "Oct 2023",
     },
     {
       type: "post",
@@ -66,8 +90,8 @@
       postBody: "",
       postSummary: "Your biggest regrets at 80 will be acts of omission.",
       date: "Dec 2023",
-    },
-    {
+    }],
+    "job_Sept_23": {
       type: "job",
       companyName: "BetterUp",
       image: betterUpPhoto,
@@ -77,10 +101,10 @@
       location: "",
       date: "Sept 2022",
     },
-  ];
+};
 </script>
 
-<main class="main max-w-screen-2xl m-auto">
+<main class="main">
   <!-- header - start -->
   <header class="header">
     <div class="header-left">
@@ -198,12 +222,12 @@
       <div class="user-profile-sm">
         <div class="user-profile-sm__imgDiv">
           <img
-            src={userProfilePic}
-            alt={userName}
+            src={user.photo}
+            alt={user.name}
             class="user-profile-sm__img"
           />
         </div>
-        <div class="user-profile-sm__name">{userName}</div>
+        <div class="user-profile-sm__name">{user.name}</div>
         <div class="user-proile-sm__down">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -230,24 +254,24 @@
     <section class="user-info">
       <div class="user-info-abt">
         <div class="user-info-abt__imgDiv">
-          <img src={userProfilePic} alt={userName} class="user-info-abt__img" />
+          <img src={userProfilePic} alt={user.name} class="user-info-abt__img" />
         </div>
-        <div class="user-info-abt__name">{userName}</div>
+        <div class="user-info-abt__name">{user.name}</div>
       </div>
 
       <div class="user-info-bio">
         <div class="user-info-sum">
-          <div class="user-info-bio__bio">{bio}</div>
+          <div class="user-info-bio__bio">{user.bio}</div>
           <div class="user-info-curr">
             <div class="user-info-logoDiv">
               <img
-                src={duggupHeaderLogo}
-                alt={"Duggup"}
+                src={user.companyImage}
+                alt={user.companyName}
                 class="user-info-logo"
               />
             </div>
-            <div class="user-info-comName">Duggup</div>
-            <div class="user-info-comPos">Co-Founder and CEO</div>
+            <div class="user-info-comName">{user.companyName}</div>
+            <div class="user-info-comPos">{user.jobPosition}</div>
           </div>
         </div>
 
@@ -295,290 +319,144 @@
     </section>
 
     <section class="timeline">
-      <!-- <div class="stories"> -->
-        <div class="stories__desc">
-          <div class="stories-svg-div">
-            <svg
-              class="stories-svg"
-              viewBox="0 0 17 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="8.5"
-                cy="8"
-                r="6.5"
-                fill="white"
-                stroke="#0066FF"
-                stroke-width="3"
-              />
-            </svg>
-          </div>
-          <div class="stories__date">Dec 2023</div>
-        </div>
+        {#each Object.keys(posts) as postArray}
+            {#if postArray.split('_')[0] === "post"}
+                <div class="stories__desc">
+                    <div class="stories-svg-div">
+                    <svg
+                        class="stories-svg"
+                        viewBox="0 0 17 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <circle
+                        cx="8.5"
+                        cy="8"
+                        r="6.5"
+                        fill="white"
+                        stroke="#0066FF"
+                        stroke-width="3"
+                        />
+                    </svg>
+                    </div>
+                    <div class="stories__date">{postArray.split("_")[1]} {postArray.split("_")[2]}</div>
+                </div>
 
-        <div class="stories__info">
-          <div class="stories-card">
-            <div class="stories-img-div">
-              <img
-                src={steveJobsPhoto}
-                alt="Steve Jobs"
-                class="stories-img"
-              />
-            </div>
-            <div class="stories-summary">
-              {"No amount of technology can convert a bad story into a good story."}
-            </div>
-          </div>
-
-          <div class="stories-card">
-            <div class="stories-img-div">
-              <img
-                src={samAltmanPhoto}
-                alt="Sam Altman"
-                class="stories-img"
-              />
-            </div>
-            <div class="stories-summary">
-              {"Your biggest regrets at 80 will be acts of omission."}
-            </div>
-          </div>
-        </div>
-      <!-- </div> -->
-
-      <!-- <div class="job-status"> -->
-        <div class="job-status__desc">
-          <div class="job-status-chevronDiv">
-            <svg
-              class="job-status-chevron"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m19.5 8.25-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </div>
-          <div class="job-status-svgDiv">
-            <svg
-              class="job-status-svg"
-              viewBox="0 0 31 29"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g filter="url(#filter0_d_7_11018)">
-                <ellipse cx="15.5" cy="13.5" rx="14" ry="13.5" fill="white" />
-                <path
-                  d="M25 13.5C25 18.3177 20.9024 22.5 15.5 22.5C10.0976 22.5 6 18.3177 6 13.5C6 8.68229 10.0976 4.5 15.5 4.5C20.9024 4.5 25 8.68229 25 13.5Z"
-                  stroke="#0066FF"
-                  stroke-width="9"
-                />
-              </g>
-              <defs>
-                <filter
-                  id="filter0_d_7_11018"
-                  x="0.5"
-                  y="0"
-                  width="30"
-                  height="29"
-                  filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
-                >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
+                <div class="stories__info">
+                {#each posts[postArray] as post}
+                    <div class="stories-card">
+                        <div class="stories-img-div">
+                        <img
+                            src={post.image}
+                            alt="Steve Jobs"
+                            class="stories-img"
+                        />
+                        </div>
+                        <div class="stories-summary">
+                        {post.postSummary}
+                        </div>
+                    </div>
+                {/each}
+                </div>
+            {:else}
+            <div class="job-status__desc">
+                <div class="job-status-chevronDiv">
+                  <svg
+                    class="job-status-chevron"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </div>
+                <div class="job-status-svgDiv">
+                  <svg
+                    class="job-status-svg"
+                    viewBox="0 0 31 29"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g filter="url(#filter0_d_7_11018)">
+                      <ellipse cx="15.5" cy="13.5" rx="14" ry="13.5" fill="white" />
+                      <path
+                        d="M25 13.5C25 18.3177 20.9024 22.5 15.5 22.5C10.0976 22.5 6 18.3177 6 13.5C6 8.68229 10.0976 4.5 15.5 4.5C20.9024 4.5 25 8.68229 25 13.5Z"
+                        stroke="#0066FF"
+                        stroke-width="9"
+                      />
+                    </g>
+                    <defs>
+                      <filter
+                        id="filter0_d_7_11018"
+                        x="0.5"
+                        y="0"
+                        width="30"
+                        height="29"
+                        filterUnits="userSpaceOnUse"
+                        color-interpolation-filters="sRGB"
+                      >
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix
+                          in="SourceAlpha"
+                          type="matrix"
+                          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                          result="hardAlpha"
+                        />
+                        <feOffset dy="1" />
+                        <feGaussianBlur stdDeviation="0.5" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix
+                          type="matrix"
+                          values="0 0 0 0 0.647059 0 0 0 0 0.72549 0 0 0 0 0.827451 0 0 0 1 0"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in2="BackgroundImageFix"
+                          result="effect1_dropShadow_7_11018"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="effect1_dropShadow_7_11018"
+                          result="shape"
+                        />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="job-status__logoDiv">
+                  <img
+                    src={posts[postArray].image}
+                    alt="{posts[postArray].companyName} Logo"
+                    class="job-status__logo"
                   />
-                  <feOffset dy="1" />
-                  <feGaussianBlur stdDeviation="0.5" />
-                  <feComposite in2="hardAlpha" operator="out" />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.647059 0 0 0 0 0.72549 0 0 0 0 0.827451 0 0 0 1 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow_7_11018"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow_7_11018"
-                    result="shape"
-                  />
-                </filter>
-              </defs>
-            </svg>
-          </div>
-          <div class="job-status__logoDiv">
-            <img
-              src={duggupHeaderLogo}
-              alt="Duggup Logo"
-              class="job-status__logo"
-            />
-          </div>
-          <div class="job-status__com-name">Duggup</div>
-          <div class="job-status__loc">San Francisco Bay Area</div>
-          <div class="job-status__joi">Joined</div>
-          <div class="job-status__date">Nov 2023</div>
-        </div>
-
-        <div class="job-status__info">
-          <div class="job-status__container">
-            <div class="job-status__role">Co-Founder and CEO</div>
-            <div class="job-status__emp">
-              <div class="job-status__pos">Full-time</div>
-              <div class="job-status__status">Remote</div>
-            </div>
-          </div>
-        </div>
-      <!-- </div> -->
-
-      <!-- <div class="stories"> -->
-        <div class="stories__desc">
-          <div class="stories-svg-div">
-            <svg
-              class="stories-svg"
-              viewBox="0 0 17 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="8.5"
-                cy="8"
-                r="6.5"
-                fill="white"
-                stroke="#0066FF"
-                stroke-width="3"
-              />
-            </svg>
-          </div>
-          <div class="stories__date">Dec 2023</div>
-        </div>
-
-        <div class="stories__info">
-          <div class="stories-card">
-            <div class="stories-img-div">
-              <img src={startUpPhoto} alt="Start Up" class="stories-img" />
-            </div>
-            <div class="stories-summary">
-              {"Startup Lesson I am reflecting. Don't build for the 'average person'."}
-            </div>
-          </div>
-
-          <div class="stories-card">
-            <div class="stories-img-div">
-              <img src={regretPhoto} alt="Sam Altman" class="stories-img" />
-            </div>
-            <div class="stories-summary">
-              {"Your biggest regrets at 80 will be acts of omission."}
-            </div>
-          </div>
-        </div>
-      <!-- </div> -->
-
-      <!-- <div class="job-status"> -->
-        <div class="job-status__desc">
-          <div class="job-status-chevronDiv">
-            <svg
-              class="job-status-chevron"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m19.5 8.25-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </div>
-          <div class="job-status-svgDiv">
-            <svg
-              class="job-status-svg"
-              viewBox="0 0 31 29"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g filter="url(#filter0_d_7_11018)">
-                <ellipse cx="15.5" cy="13.5" rx="14" ry="13.5" fill="white" />
-                <path
-                  d="M25 13.5C25 18.3177 20.9024 22.5 15.5 22.5C10.0976 22.5 6 18.3177 6 13.5C6 8.68229 10.0976 4.5 15.5 4.5C20.9024 4.5 25 8.68229 25 13.5Z"
-                  stroke="#0066FF"
-                  stroke-width="9"
-                />
-              </g>
-              <defs>
-                <filter
-                  id="filter0_d_7_11018"
-                  x="0.5"
-                  y="0"
-                  width="30"
-                  height="29"
-                  filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
-                >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset dy="1" />
-                  <feGaussianBlur stdDeviation="0.5" />
-                  <feComposite in2="hardAlpha" operator="out" />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.647059 0 0 0 0 0.72549 0 0 0 0 0.827451 0 0 0 1 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow_7_11018"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow_7_11018"
-                    result="shape"
-                  />
-                </filter>
-              </defs>
-            </svg>
-          </div>
-          <div class="job-status__logoDiv">
-            <img
-              src={betterUpPhoto}
-              alt="Duggup Logo"
-              class="job-status__logo"
-            />
-          </div>
-          <div class="job-status__com-name">BetterUp</div>
-          <div class="job-status__loc">San Francisco Bay Area</div>
-          <div class="job-status__joi">Joined</div>
-          <div class="job-status__date">Sept 2022</div>
-        </div>
-
-        <div class="job-status__info">
-          <div class="job-status__container">
-            <div class="job-status__role">VP Engineering</div>
-            <div class="job-status__emp">
-              <div class="job-status__pos">Full-time</div>
-            </div>
-          </div>
-        </div>
-      <!-- </div> -->
+                </div>
+                <div class="job-status__com-name">{posts[postArray].companyName}</div>
+                <div class="job-status__loc">{posts[postArray].companyLocation}</div>
+                <div class="job-status__joi">Joined</div>
+                <div class="job-status__date">{posts[postArray].date}</div>
+              </div>
+      
+              <div class="job-status__info">
+                <div class="job-status__container">
+                  <div class="job-status__role">{posts[postArray].jobName}</div>
+                  <div class="job-status__emp">
+                    <div class="job-status__pos">{posts[postArray].position}</div>
+                    {#if posts[postArray].location.length}
+                        <div class="job-status__status">{posts[postArray].location}</div>
+                    {/if}
+                  </div>
+                </div>
+              </div>
+            {/if}
+            
+        {/each}
     </section>
   </section>
   <!-- profile-section - end -->
