@@ -1,0 +1,6 @@
+<script lang="ts">
+    export let className:string;
+</script>
+<svg class={className} viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="8.5" cy="8" r="6.5" fill="white" stroke="#0066FF" stroke-width="3"/>
+</svg>
