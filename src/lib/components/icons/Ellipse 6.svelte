@@ -1,4 +1,7 @@
-<svg class="job-status-svg" viewBox="0 0 31 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<script lang="ts">
+    export let className:string;
+</script>
+<svg class={className} viewBox="0 0 31 29" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d_7_11018)">
     <ellipse cx="15.5" cy="13.5" rx="14" ry="13.5" fill="white"/>
     <path d="M25 13.5C25 18.3177 20.9024 22.5 15.5 22.5C10.0976 22.5 6 18.3177 6 13.5C6 8.68229 10.0976 4.5 15.5 4.5C20.9024 4.5 25 8.68229 25 13.5Z" stroke="#0066FF" stroke-width="9"/>
